@@ -4,7 +4,7 @@ This example shows how to user SageMaker Clarify to run explainability jobs on a
 
 Below is the architecture diagram used in the solution:
 
-![alt text](clarify_inf_pipeline_arch.png)
+![alt text](clarify_inf_pipeline_arch.jpg)
 
 
 The notebook performs the following steps:
