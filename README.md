@@ -1,6 +1,7 @@
 ## Credit risk prediction and explainability with Amazon SageMaker
 
-This example shows how to user SageMaker Clarify to run explainability jobs on a SageMaker hosted inference pipeline. 
+In this workshop, we demonstrate a end to end ML use case of credit risk prediction with model explainability and bias detection. We use a well known open source dataset https://archive.ics.uci.edu/ml/datasets/South+German+Credit+%28UPDATE%29 .
+We show how to use SageMaker Clarify to run explainability and bias detection on a SageMaker inference pipeline model. We include the explainability and bias reports from Clarify as well as relevant links to further resources on this subject.
 
 Below is the architecture diagram used in the solution:
 
