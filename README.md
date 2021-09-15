@@ -20,6 +20,13 @@ The notebook performs the following steps:
 8. Run bias analysis jobs
 9. Clean up
 
+To get started follwo the below steps 
+
+
+
+
+
+
 
 The attached notebook can be run in Amazon SageMaker Studio. 
 
