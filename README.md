@@ -20,7 +20,7 @@ The notebook performs the following steps:
 8. Run bias analysis jobs
 9. Clean up
 
-To get started follwo the below steps 
+To get started follow the below steps 
 
 
 
