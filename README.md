@@ -32,5 +32,38 @@ Enter the event hash you have received from your instructor.
 
 ![alt text](static/2.png)
 
+Click on Email One-Time Password (OTP).
+
+![alt text](static/3.png)
+
+You are redirected to the following page:
+
+![alt text](static/4.png)
+
+Enter your email address and click on Send passcode.
+
+![alt text](static/5.png)
+
+You are redirected to the following page:
+
+![alt text](static/6.png)
+
+Check your mailbox, copy-paste the one-time password and click on Sign in.
+
+![alt text](static/7.png)
+
+You are redirected to the Team Dashboard. Click on AWS Console.
+
+![alt text](static/8.png)
+
+On the next screen, click on Open AWS Console.
+
+![alt text](static/9.png)
+
+You are then redirected to the AWS Console.
+
+![alt text](static/10.png)
+
+
 
 
