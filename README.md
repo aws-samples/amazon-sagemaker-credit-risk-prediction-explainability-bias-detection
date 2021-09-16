@@ -64,6 +64,37 @@ You are then redirected to the AWS Console.
 
 ![alt text](static/10.png)
 
+## Amazon SageMaker Studio access
+
+Amazon SageMaker Studio is a web-based, integrated development environment (IDE) for machine learning that lets you build, train, debug, deploy, and monitor your machine learning models. Studio provides all the tools you need to take your models from experimentation to production while boosting your productivity.
+
+If the AWS Account has been provisioned by your AWS Instructor, follow the next steps to access the SageMaker Studio environment:
+
+1. Open AWS console and switch to AWS region communicated by your instructor.
+
+![alt text](static/11.png)
+
+2. Under services search for Amazon SageMaker.
+
+![alt text](static/12.png)
+
+3. Under Get Started, click on the orange button SageMaker Studio.
+
+![alt text](static/13.png)
+
+4. A SageMaker Studio environment should already be provisioned. Click on Open Studio (on the right side of the preprovisioned sagemakeruser username).
+
+![alt text](static/14.png)
+
+5. The page can take 1 or 2 minutes to load when you access SageMaker Studio for the first time.
+
+![alt text](static/15.png)
+
+6. You will be redirected to a new web tab that looks like this:
+
+![alt text](static/16.png)
+
+7. 
 
 
 
