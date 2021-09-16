@@ -94,7 +94,28 @@ If the AWS Account has been provisioned by your AWS Instructor, follow the next 
 
 ![alt text](static/16.png)
 
-7. 
+7. Under Utilities and files click on System terminal
+
+![alt text](static/17.png)
+
+8. In the terminal, type the following command:
+
+git clone https://github.com/aws-samples/amazon-sagemaker-credit-risk-prediction-explainability-bias-detection
+
+![alt text](static/18.png)
+
+9. After completion of step 2 you will have amazon-sagemaker-credit-risk-prediction-explainability-bias-detection folder created in left panel of the studio:
+
+![alt text](static/19.png)
+
+10. Under amazon-sagemaker-credit-risk-prediction-explainability-bias-detection double click on credit_risk_explainability_inference_pipelines_with_output.ipynb and Select Kernel as Python 3 (Data Science)
+
+![alt text](static/20.png)
+
+Congratulations!! You have successfully downloaded the content of the credit risk explainability lab, please follow the instructions in the jupyter notebook.
+
+![alt text](static/21.png)
+
 
 
 
