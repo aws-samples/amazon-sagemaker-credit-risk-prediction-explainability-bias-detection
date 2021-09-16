@@ -24,6 +24,6 @@ The notebook performs the following steps:
 ## Lab Instructions
 ## Event Engine AWS Account access
 Go to: https://dashboard.eventengine.run/login. You will be redirected to the page below.
-![ ](static/1.PNG)
+![alt text](static/1.png)
 
 
