@@ -113,7 +113,7 @@ git clone https://github.com/aws-samples/amazon-sagemaker-credit-risk-prediction
 ![alt text](static/20.png)
 
 Congratulations!! You have successfully downloaded the content of the credit risk explainability lab, please follow the instructions in the jupyter notebook.
-
+Please note that links to pdf reports and studio reports for explainability and bias are generated in the notebook.
 ![alt text](static/21.png)
 
 
