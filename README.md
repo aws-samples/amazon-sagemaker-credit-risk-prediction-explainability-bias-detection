@@ -62,7 +62,7 @@ On the next screen, click on Open AWS Console.
 
 You are then redirected to the AWS Console.
 
-![alt text](static/10.png)
+
 
 ## Amazon SageMaker Studio access
 
