@@ -104,7 +104,7 @@ git clone https://github.com/aws-samples/amazon-sagemaker-credit-risk-prediction
 
 ![alt text](static/18.png)
 
-9. After completion of step 2 you will have amazon-sagemaker-credit-risk-prediction-explainability-bias-detection folder created in left panel of the studio:
+9. After completion of step 9 you will have amazon-sagemaker-credit-risk-prediction-explainability-bias-detection folder created in left panel of the studio:
 
 ![alt text](static/19.png)
 
