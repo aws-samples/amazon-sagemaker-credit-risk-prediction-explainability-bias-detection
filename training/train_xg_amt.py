@@ -11,6 +11,7 @@ import statistics
 import boto3
 from dmatrix2np import dmatrix_to_numpy
 from sklearn.metrics import roc_auc_score
+from smclarify.bias.metrics import DPPL
 
 s3 = boto3.client('s3')
 
@@ -88,6 +89,44 @@ def eval_statistical_disparity(predt, dtrain):
     sd = abs(sp[0] - sp[1])
     
     return sd
+
+def eval_dppl(predt, dtrain):
+    """
+    Eval DPPL using AWS clarify
+    fY - prediction [ credit risk - 0: bad 1: good]
+    groups - Foreign worker [ 1 yes, 2 no]
+    """
+
+    dtrain_np = dmatrix_to_numpy(dtrain)
+    # groups: an np array containing 1 or 2
+    groups = dtrain_np[:, -1]
+    
+    # sensitive_facet_index: boolean column indicating sensitive group
+    sensitive_facet_index = pd.Series(groups - 1, dtype=bool)
+    # positive_predicted_label_index: boolean column indicating positive predicted labels
+    positive_label_index = pd.Series(predt > 0.5)
+
+    return abs(DPPL(predt, sensitive_facet_index, positive_label_index))
+
+def test_dppl():
+    N = 10
+    n_feature = 2
+
+    for i in range(100):
+        predt = np.random.rand(N)
+        dtrain_np = np.random.randn(N, n_feature)
+        groups = np.random.choice([1,2], size=(N,1))
+        dtrain_np = np.c_[dtrain_np, groups]
+        r1 = eval_disparate_impact(predt, dtrain_np)
+        
+        # sensitive_facet_index: boolean column indicating sensitive group
+        sensitive_facet_index = pd.Series(groups[:,0]-1, dtype=bool)
+        # positive_predicted_label_index: boolean column indicating positive predicted labels
+        positive_label_index = pd.Series(predt > 0.5)
+        
+        r2 = abs(DPPL(predt, sensitive_facet_index, positive_label_index))
+    
+        assert r1 == r2, f"r1={r1}, r2={r2}"
     
 
 def main():
