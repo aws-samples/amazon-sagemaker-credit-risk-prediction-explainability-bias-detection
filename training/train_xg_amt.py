@@ -57,7 +57,7 @@ def eval_auc_score(predt, dtrain):
 # Combined metrics for SD and AUC
 def eval_combined_metric(predt, dtrain):
     auc_score = eval_auc_score(predt, dtrain)
-    sd = eval_statistical_disparity(predt, dtrain)
+    sd = eval_dppl(predt, dtrain)
     combined_metric = ((4*auc_score)+(1-sd))/5
     print("Statistical Disparity, AUC Score, Combined Metric: ", sd, auc_score, combined_metric)
     write_to_s3(round(sd,4), round(auc_score,4))
