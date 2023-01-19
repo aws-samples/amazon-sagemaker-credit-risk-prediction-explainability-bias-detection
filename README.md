@@ -20,6 +20,13 @@ The notebook performs the following steps:
 8. Run bias analysis jobs
 9. Clean up
 
+To get started follow the below steps 
+
+
+
+
+
+
 
 ## Lab Instructions
 ## Event Engine AWS Account access
