@@ -52,7 +52,8 @@ if __name__ == "__main__":
     input_data_path = os.path.join("/opt/ml/processing/input", "train.csv")
     print("Reading input data from {}".format(input_data_path))
     df = pd.read_csv(input_data_path, names=None, header=0, sep=",")
-
+    #CheckColumns
+    print(df.columns)
     # Defining one-hot encoders.
     print("performing one hot encoding")
     transformer = make_column_transformer(
@@ -67,7 +68,6 @@ if __name__ == "__main__":
                 "housing",
                 "job",
                 "telephone",
-                "foreign_worker",
             ],
             OneHotEncoder(sparse=False),
         ),
@@ -89,7 +89,6 @@ if __name__ == "__main__":
     X_train, X_val, y_train, y_val = train_test_split(
         features, labels, test_size=split_ratio, random_state=0
     )
-
     print("Train features shape after preprocessing: {}".format(X_train.shape))
     print("Validation features shape after preprocessing: {}".format(X_val.shape))
 
@@ -102,7 +101,7 @@ if __name__ == "__main__":
 
     print("Saving training features to {}".format(train_features_output_path))
     pd.DataFrame(X_train).to_csv(train_features_output_path, header=False, index=False)
-
+    
     print("Saving training labels to {}".format(train_labels_output_path))
     pd.DataFrame(y_train).to_csv(train_labels_output_path, header=False, index=False)
 

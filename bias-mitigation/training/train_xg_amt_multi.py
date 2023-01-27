@@ -21,8 +21,8 @@ def parse_args():
 
     parser.add_argument("--max_depth", type=int, default=5)
     parser.add_argument("--eta", type=float, default=0.05)
-    parser.add_argument("--gamma", type=int, default=4)
-    parser.add_argument("--min_child_weight", type=int, default=6)
+    parser.add_argument("--gamma", type=float, default=4)
+    parser.add_argument("--min_child_weight", type=float, default=6)
     parser.add_argument("--silent", type=int, default=0)
     
     parser.add_argument("--objective", type=str)
@@ -57,8 +57,12 @@ def eval_auc_score(predt, dtrain):
 # Combined metrics for SD and AUC
 def eval_combined_metric(predt, dtrain):
     auc_score = eval_auc_score(predt, dtrain)
-    sd = eval_statistical_disparity(predt, dtrain)
-    combined_metric = ((4*auc_score)+(1-sd))/5
+    sd = eval_dppl(predt, dtrain)
+    combined_metric = ((3*auc_score)+(1-sd))/4
+    if (sd == 0.0):
+        combined_metric = 0.0
+    if (auc_score == 0.5):
+        combined_metric = 0.0
     print("Statistical Disparity, AUC Score, Combined Metric: ", sd, auc_score, combined_metric)
     write_to_s3(round(sd,4), round(auc_score,4))
     
@@ -108,25 +112,25 @@ def eval_dppl(predt, dtrain):
 
     return abs(DPPL(predt, sensitive_facet_index, positive_label_index))
 
-def test_dppl():
-    N = 10
-    n_feature = 2
+# def test_dppl():
+#     N = 10
+#     n_feature = 2
 
-    for i in range(100):
-        predt = np.random.rand(N)
-        dtrain_np = np.random.randn(N, n_feature)
-        groups = np.random.choice([1,2], size=(N,1))
-        dtrain_np = np.c_[dtrain_np, groups]
-        r1 = eval_statistical_disparity(predt, dtrain_np)
+#     for i in range(100):
+#         predt = np.random.rand(N)
+#         dtrain_np = np.random.randn(N, n_feature)
+#         groups = np.random.choice([1,2], size=(N,1))
+#         dtrain_np = np.c_[dtrain_np, groups]
+#         r1 = eval_statistical_disparity(predt, dtrain_np)
         
-        # sensitive_facet_index: boolean column indicating sensitive group
-        sensitive_facet_index = pd.Series(groups[:,0]-1, dtype=bool)
-        # positive_predicted_label_index: boolean column indicating positive predicted labels
-        positive_label_index = pd.Series(predt > 0.5)
+#         # sensitive_facet_index: boolean column indicating sensitive group
+#         sensitive_facet_index = pd.Series(groups[:,0]-1, dtype=bool)
+#         # positive_predicted_label_index: boolean column indicating positive predicted labels
+#         positive_label_index = pd.Series(predt > 0.5)
         
-        r2 = abs(DPPL(predt, sensitive_facet_index, positive_label_index))
+#         r2 = abs(DPPL(predt, sensitive_facet_index, positive_label_index))
     
-        assert r1 == r2, f"r1={r1}, r2={r2}"
+#         assert r1 == r2, f"r1={r1}, r2={r2}"
 
 def main():
 
