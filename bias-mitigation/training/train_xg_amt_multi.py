@@ -68,32 +68,6 @@ def eval_combined_metric(predt, dtrain):
     
     return "auc", combined_metric
 
-def eval_statistical_disparity(predt, dtrain):
-    """
-    Eval SD metric 
-    fY - prediction [ credit risk - 0: bad 1: good]
-    groups - Foreign worker [ 1 yes, 2 no]
-    """
-    
-    dtrain_np = dmatrix_to_numpy(dtrain)
-
-    # Foreign worker 
-    groups = [item for sublist in dtrain_np[:, -1:] for item in sublist]
-    
-    fY = [1 if p > 0.5 else 0 for p in predt]
-    sp = [0, 0]
-    sp[0] = float(
-        len([1 for idx, fy in enumerate(fY) if fy == 1 and groups[idx] == 1.0])
-    ) / len([1 for idx, fy in enumerate(fY) if groups[idx] == 1.0])
-    
-    sp[1] = float(
-        len([1 for idx, fy in enumerate(fY) if fy == 1 and groups[idx] == 2.0])
-    ) / len([1 for idx, fy in enumerate(fY) if groups[idx] == 2.0])
-    
-    sd = abs(sp[0] - sp[1])
-    
-    return sd
-    
 def eval_dppl(predt, dtrain):
     """
     Eval DPPL using AWS clarify
@@ -111,26 +85,6 @@ def eval_dppl(predt, dtrain):
     positive_label_index = pd.Series(predt > 0.5)
 
     return abs(DPPL(predt, sensitive_facet_index, positive_label_index))
-
-# def test_dppl():
-#     N = 10
-#     n_feature = 2
-
-#     for i in range(100):
-#         predt = np.random.rand(N)
-#         dtrain_np = np.random.randn(N, n_feature)
-#         groups = np.random.choice([1,2], size=(N,1))
-#         dtrain_np = np.c_[dtrain_np, groups]
-#         r1 = eval_statistical_disparity(predt, dtrain_np)
-        
-#         # sensitive_facet_index: boolean column indicating sensitive group
-#         sensitive_facet_index = pd.Series(groups[:,0]-1, dtype=bool)
-#         # positive_predicted_label_index: boolean column indicating positive predicted labels
-#         positive_label_index = pd.Series(predt > 0.5)
-        
-#         r2 = abs(DPPL(predt, sensitive_facet_index, positive_label_index))
-    
-#         assert r1 == r2, f"r1={r1}, r2={r2}"
 
 def main():
 
