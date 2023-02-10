@@ -24,8 +24,8 @@ def parse_args():
 
     parser.add_argument("--max_depth", type=int, default=5)
     parser.add_argument("--eta", type=float, default=0.05)
-    parser.add_argument("--gamma", type=int, default=4)
-    parser.add_argument("--min_child_weight", type=int, default=6)
+    parser.add_argument("--gamma", type=float, default=4)
+    parser.add_argument("--min_child_weight", type=float, default=6)
     parser.add_argument("--silent", type=int, default=0)
     
     parser.add_argument("--objective", type=str)
@@ -44,13 +44,13 @@ def parse_args():
     return args
 
 # TODO: REMOVE ME : Cleanup
-def write_to_s3(di, auc_score):
+def write_to_s3(sd, auc_score):
 
     args = parse_args()
     
     # Save a text file to output_data_dir
     f = open(os.path.join(args.output_data_dir, 'raw_ouptut.txt'), 'a+')
-    f.write(str(di) + "," + str(auc_score) + "\n")
+    f.write(str(sd) + "," + str(auc_score) + "\n")
     f.close()
             
 def eval_auc_score(predt, dtrain):
@@ -60,24 +60,24 @@ def eval_auc_score(predt, dtrain):
     auc_score = roc_auc_score(y, fY)
     return auc_score
 
-# Combined metrics for DI and AUC
+# Combined metrics for SD and AUC
 def eval_combined_metric(predt, dtrain):
   
     auc_score = eval_auc_score(predt, dtrain)
-    di = eval_disparate_impact(predt, dtrain)
-    #Maximize (1-DI) for the purpose of minimizing DI 
-    combined_metric = round(statistics.mean([auc_score, 1-di]), 4)
+    sd = eval_statistical_disparity(predt, dtrain)
+    #Maximize (1-SD) for the purpose of minimizing SD 
+    combined_metric = round(statistics.mean([auc_score, 1-sd]), 4)
        
-    print("DI, AUC Score, Combined Metric: ", di, auc_score, combined_metric)
+    print("SD, AUC Score, Combined Metric: ", sd, auc_score, combined_metric)
     
     # TODO: REMOVE ME : Cleanup
-    write_to_s3(round(di,4), round(auc_score,4))
+    write_to_s3(round(sd,4), round(auc_score,4))
         
     return "auc", auc_score
 
-def eval_disparate_impact(predt, dtrain):
+def eval_statistical_disparity(predt, dtrain):
     """
-    Eval DI metric 
+    Eval SD metric 
     fY - prediction [ credit risk - 0: bad 1: good]
     groups - Foreign worker [ 1 yes, 2 no]
     """
@@ -99,9 +99,9 @@ def eval_disparate_impact(predt, dtrain):
         len([1 for idx, fy in enumerate(fY) if fy == 1 and groups[idx] == 2.0])
     ) / len([1 for idx, fy in enumerate(fY) if groups[idx] == 2.0])
     
-    di = abs(sp[0] - sp[1])
+    sd = abs(sp[0] - sp[1])
     
-    return di
+    return sd
     
 
 def main():
@@ -118,12 +118,12 @@ def main():
     val_labels_path = os.path.join(args.validation, "val_labels.csv")
 
     print("Loading training dataframes...")
-    df_train_features = pd.read_csv(train_features_path)
-    df_train_labels = pd.read_csv(train_labels_path)
+    df_train_features = pd.read_csv(train_features_path, header=None)
+    df_train_labels = pd.read_csv(train_labels_path, header=None)
 
     print("Loading validation dataframes...")
-    df_val_features = pd.read_csv(val_features_path)
-    df_val_labels = pd.read_csv(val_labels_path)
+    df_val_features = pd.read_csv(val_features_path, header=None)
+    df_val_labels = pd.read_csv(val_labels_path, header=None)
 
     X = df_train_features.values
     y = df_train_labels.values

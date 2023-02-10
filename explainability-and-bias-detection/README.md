@@ -1,12 +1,12 @@
-# Credit risk bias detection and mitigation with Amazon SageMaker
+## Credit risk prediction and explainability and bias detection with Amazon SageMaker
 
+In this workshop, we demonstrate a end to end ML use case of credit risk prediction with model explainability and bias detection. We use a well known open source dataset https://archive.ics.uci.edu/ml/datasets/South+German+Credit+%28UPDATE%29 .
+We show how to use SageMaker Clarify to run explainability and bias detection on a SageMaker inference pipeline model. We include the explainability and bias reports from Clarify as well as relevant links to further resources on this subject.
 
-## 1. Bias Detection
+Below is the architecture diagram used in the solution:
 
-In this section, we demonstrate a end to end ML use case of credit risk prediction with model explainability and bias detection.
+![alt text](clarify_inf_pipeline_arch.jpg)
 
-Refer [Bias Detection](https://github.com/aws-samples/amazon-sagemaker-credit-risk-prediction-explainability-bias-detection/blob/main/explainability-and-bias-detection/README.md) for detailed step-by-step instructions .
-=======
 
 The notebook performs the following steps:
 
@@ -19,13 +19,6 @@ The notebook performs the following steps:
 7. Use open source shap library to create summary and waterfall plots to understand the feature importance better
 8. Run bias analysis jobs
 9. Clean up
-
-To get started follow the below steps 
-
-
-
-
-
 
 
 ## Lab Instructions
@@ -123,8 +116,6 @@ Congratulations!! You have successfully downloaded the content of the credit ris
 Please note that links to pdf reports and studio reports for explainability and bias are generated in the notebook.
 ![alt text](static/21.png)
 
-## 2. Bias Mitigation
 
-In this section, we demonstrate a end to end ML use case of credit risk prediction with bias mitigation.
 
-Refer [Bias Mitigation](https://github.com/aws-samples/amazon-sagemaker-credit-risk-prediction-explainability-bias-detection/blob/main/bias-mitigation/README.md) for detailed step-by-step instructions .
+
