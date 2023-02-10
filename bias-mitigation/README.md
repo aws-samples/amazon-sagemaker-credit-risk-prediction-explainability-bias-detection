@@ -1,6 +1,6 @@
-## Credit risk prediction and explainability and bias detection with Amazon SageMaker
+## Credit risk prediction and bias mitigation with Amazon SageMaker
 
-In this workshop, we demonstrate a end to end ML use case of credit risk prediction with model explainability and bias mitigation. We use a well known open source dataset https://archive.ics.uci.edu/ml/datasets/South+German+Credit+%28UPDATE%29 .
+In this workshop, we demonstrate a end to end ML use case of credit risk prediction with bias mitigation. We use a well known open source dataset https://archive.ics.uci.edu/ml/datasets/South+German+Credit+%28UPDATE%29 .
 We show how to use SageMaker to mitigate bias in models trained on a biased dataset with a SageMaker inference pipeline model. 
 
 ![Credit risk explainability use case](images/NewTitleCard.PNG)
