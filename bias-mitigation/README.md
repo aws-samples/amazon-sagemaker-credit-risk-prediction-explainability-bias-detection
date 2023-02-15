@@ -19,10 +19,6 @@ In this SageMaker Studio notebook, we highlight how you can use SageMaker to tra
 Below is a high level view of the architecture this lab will take you through:  
 ![Credit risk explainability model inference](images/Architecture.png)
 
-Below is the architecture diagram used in the solution:
-![alt text](clarify_inf_pipeline_arch.jpg)
-
-
 The three notebooks will perform the following steps:
 
 1. Prepare raw training and test data by generating bias in the dataset 
@@ -33,7 +29,8 @@ The three notebooks will perform the following steps:
 6. Train another XGBoost model on the processed data using SageMaker's built-in XGBoost container. This model will focus on optimizing for multiple objectives (accuracy & fairness)
 7. Create a SageMaker model endpoint for the multi objective model as well and perform inference using processed test data
 8. Compare inferences of the two models 
-9. Clean up
+9. View Pareto Chart and visualizations of the Optimized Model  
+10. Clean up
 
 
 ## Lab Instructions
@@ -49,13 +46,23 @@ git clone https://github.com/aws-samples/amazon-sagemaker-credit-risk-prediction
 
 ![alt text](static/19.png)
 
-3. Under amazon-sagemaker-credit-risk-prediction-explainability-bias-detection double click on credit_risk_explainability_inference_pipelines_with_output.ipynb and Select Kernel as Python 3 (Data Science)
+3. Under amazon-sagemaker-credit-risk-prediction-explainability-bias-detection double click on the "bias-mitigation" folder, open "1-DataCreation&Processing.ipynb". When prompted to select Kernel set as "Python 3 (Data Science)"
 
-![alt text](static/20.png)
+![alt text](images/step3Lab.PNG)
 
 Congratulations!! You have successfully downloaded the content of the Credit Risk Explainability lab, please follow the instructions in the jupyter notebook.
-![alt text](static/21.png)
 
+
+The visualizations for the Optimized Model and its libraries were provided by the following repo:
+
+https://github.com/aws-samples/amazon-sagemaker-amt-visualize/blob/main/1_tuning_of_builtin_xgboost.ipynb 
+
+Authors:
+Hasan Poonawala
+Munish Dabra 
+Rahul Sureka
+Mohammad Tahsin 
+Xingchen Ma
 
 
 
